@@ -35,6 +35,22 @@
             background-color: rgba(255,255,255,.4) !important;
             padding: 2px !important;
         } 
+             /* Heading style */
+        #mapTitle {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1100;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+            color: #333;
+        }
             /* Feedback form modal styling */
         #formModal {
             display: none;
@@ -69,6 +85,8 @@
                 <div id="popup-content"></div>
             </div>
         </div>
+        <!-- ADD THIS TITLE HERE -->
+        <div id="mapTitle">Mapping Infrastructure Gaps in Coastal Fish Markets & Fishery Communities</div>
         <!-- Feedback Button -->
         <button onclick="openForm()" style="position: absolute; bottom: 20px; left: 10px; z-index: 1000; padding: 10px; background-color: #007bff; color: white; border: none; border-radius: 5px;">
             Give Your Feedback
