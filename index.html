@@ -95,30 +95,70 @@
         <div id="formModal">
             <h3 style="margin-top: 0;">📣 Community Feedback Form</h3>
             <form id="feedbackForm" action="https://formspree.io/f/meozgqjw" method="POST" enctype="multipart/form-data">
-                <label>👤 Name:</label>
-                <input type="text" name="name" required><br>
+                <!-- Community Fields -->
+                <div class="form-group">
+                    <label>👤 Name:</label>
+                    <input type="text" name="name" required><br>
+                </div>
                 
-                <label>📍 Community & District:</label>
-                <input type="text" name="community" required><br>
+                <div class="form-group">
+                    <label>📍 Community & District:</label>
+                    <input type="text" name="community" required><br>
+                </div>
 
-                <label>🏗️ Infrastructure Challenges:</label>
-                <textarea name="challenges" rows="2" required></textarea><br>
+                <div class="form-group">
+                    <label>🏗️ Infrastructure Challenges:</label>
+                    <textarea name="challenges" rows="2" required></textarea><br>
+                </div>
 
-                <label>💡 Suggestions for Improvement:</label>
-                <textarea name="expectations" rows="2" required></textarea><br>
+                <div class="form-group">
+                    <label>💡 Suggestions for Improvement:</label>
+                    <textarea name="expectations" rows="2" required></textarea><br>
+                </div>
+                
+                <div class="form-group">
+                    <label>📸 Upload a Photo (optional):</label>
+                    <input type="file" name="photo" accept="image/*"><br>
+                </div>
+                
+                <div class="form-group">
+                    <label>📌 Your Location (auto-filled):</label>
+                    <input type="text" name="location" id="userLocation" readonly><br>
+                </div>
 
-                <label>📸 Upload a Photo (optional):</label>
-                <input type="file" name="photo" accept="image/*"><br>
-
-                <label>📌 Your Location (auto-filled):</label>
-                <input type="text" name="location" id="userLocation" readonly><br>
-
-                <label>🚨 Urgency Level:</label>
-                <input type="range" name="urgency" min="1" max="5" value="3" oninput="document.getElementById('urgencyValue').innerText = this.value">
-                <span id="urgencyValue">3</span> / 5<br><br>
-
-                <button type="submit" style="background-color: #28a745;">Submit</button>
-                <button type="button" onclick="closeForm()" style="background-color:#dc3545;">Close</button>
+                <div class="form-group">
+                    <label>🚨 Urgency Level:</label>
+                    <input type="range" name="urgency" min="1" max="5" value="3" oninput="document.getElementById('urgencyValue').innerText = this.value">
+                    <span id="urgencyValue">3</span> / 5<br><br>
+                </div>
+                <hr style="margin: 10px 0;">
+                <!-- Stakeholder Feedback -->
+                <h4>🏛️ Stakeholder Section</h4>
+                <div class="form-group">
+                    <label>👥 Stakeholder Type:</label>
+                    <select name="stakeholder_type">
+                      <option value="">-- Select --</option>
+                      <option value="Local Government">Local Government</option>
+                      <option value="Fisheries Dept">Fisheries Dept</option>
+                      <option value="NGO/INGO">NGO/INGO</option>
+                      <option value="Private Sector">Private Sector</option>
+                      <option value="Academic/Researcher">Academic/Researcher</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>📌 Institution Name:</label>
+                    <input type="text" name="stakeholder_institution">
+                </div>
+                
+                <div class="form-group">
+                    <label>📢 Your Feedback or Proposal:</label>
+                    <textarea name="stakeholder_feedback" rows="2"></textarea>
+                </div>
+                
+                <div style="display: flex; justify-content: space-between;">
+                    <button type="submit" style="background-color: #28a745;">Submit</button>
+                    <button type="button" onclick="closeForm()" style="background-color:#dc3545;">Close</button>
+                </div>  
              </form>
         </div>
 
