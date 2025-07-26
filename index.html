@@ -158,42 +158,42 @@
                 <!-- Community Fields -->
                 <div class="form-group">
                     <label>👤 Name:</label>
-                    <input type="text" name="name" required><br>
+                    <input type="text" name="name" required>
                 </div>
                 
                 <div class="form-group">
                     <label>📍 Community & District:</label>
-                    <input type="text" name="community" required><br>
+                    <input type="text" name="community" required>
                 </div>
 
                 <div class="form-group">
                     <label>🏗️ Infrastructure Challenges:</label>
-                    <textarea name="challenges" rows="2" required></textarea><br>
+                    <textarea name="challenges" rows="2" required></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>💡 Suggestions for Improvement:</label>
-                    <textarea name="expectations" rows="2" required></textarea><br>
+                    <textarea name="expectations" rows="2" required></textarea>
                 </div>
                 
                 <div class="form-group">
                     <label>📸 Upload a Photo (optional):</label>
-                    <input type="file" name="photo" accept="image/*"><br>
+                    <input type="file" name="photo" accept="image/*">
                 </div>
                 
                 <div class="form-group">
                     <label>📌 Your Location (auto-filled):</label>
-                    <input type="text" name="location" id="userLocation" readonly><br>
+                    <input type="text" name="location" id="userLocation" readonly>
                 </div>
 
                 <div class="form-group">
                     <label>🚨 Urgency Level:</label>
                     <input type="range" name="urgency" min="1" max="5" value="3" oninput="document.getElementById('urgencyValue').innerText = this.value">
-                    <span id="urgencyValue">3</span> / 5<br><br>
+                    <span id="urgencyValue">3</span> / 5
                 </div>
                 <hr style="margin: 10px 0;">
                 <!-- Stakeholder Feedback -->
-                <h4>🏛️ Stakeholder Section</h4>
+                <h4 style="margin-top: 20px;">🏛️ Stakeholder Section</h4>
                 
                 <div class="form-group">
                     <label>👥 Stakeholder Type:</label>
@@ -217,9 +217,9 @@
                     <textarea name="stakeholder_feedback" rows="2"></textarea>
                 </div>
                 
-                <div style="display: flex; justify-content: space-between;">
-                    <button type="submit" style="background-color: #28a745;">Submit</button>
-                    <button type="button" onclick="closeForm()" style="background-color:#dc3545;">Close</button>
+                <div class="form-buttons">
+                    <button type="submit">Submit</button>
+                     <button type="button" onclick="closeForm()">Close</button>
                 </div> 
                 
              </form>
@@ -248,6 +248,34 @@
             document.getElementById("feedbackForm").addEventListener("submit", function(e) {
                 e.preventDefault();
                 const form = e.target;
+                // COMMUNITY section
+                const name = form.elements["name"].value.trim();
+                const community = form.elements["community"].value.trim();
+                const challenges = form.elements["challenges"].value.trim();
+                const expectations = form.elements["expectations"].value.trim();
+                // STAKEHOLDER section
+                const stakeholderType = form.elements["stakeholder_type"].value.trim();
+                const institution = form.elements["stakeholder_institution"].value.trim();
+                const stakeholderFeedback = form.elements["stakeholder_feedback"].value.trim();
+
+                const communityFilled = name || community || challenges || expectations;
+                const stakeholderFilled = stakeholderType || institution || stakeholderFeedback;
+                // Validation Logic
+                if (!communityFilled && !stakeholderFilled) {
+                    alert("⚠️ Please fill in either Community or Stakeholder section.");
+                    return;
+                }
+
+                if (communityFilled && (!name || !community || !challenges || !expectations)) {
+                    alert("⚠️ Please complete all Community Feedback fields.");
+                    return;
+                }
+
+                if (stakeholderFilled && (!stakeholderType || !institution || !stakeholderFeedback)) {
+                    alert("⚠️ Please complete all Stakeholder Feedback fields.");
+                    return;
+                }
+
                 fetch(form.action, {
                     method: form.method,
                     body: new FormData(form),
