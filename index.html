@@ -93,23 +93,33 @@
         </button>
         <!-- Feedback Form Modal -->
         <div id="formModal">
-            <h3>Fishing Community Feedback</h3>
-            <form id="feedbackForm" action="https://formspree.io/f/meozgqjw" method="POST">
-                <label>Name:</label><br>
-                <input type="text" name="name" required style="width:100%; padding:5px;"><br><br>
+            <h3 style="margin-top: 0;">📣 Community Feedback Form</h3>
+            <form id="feedbackForm" action="https://formspree.io/f/meozgqjw" method="POST" enctype="multipart/form-data">
+                <label>👤 Name:</label>
+                <input type="text" name="name" required><br>
                 
-                <label>Fishing Community with District:</label><br>
-                <input type="text" name="community" required style="width:100%; padding:5px;"><br><br>
-                
-                <label>Infrastructure Challenges:</label><br>
-                <textarea name="challenges" rows="3" required style="width:100%; padding:5px;"></textarea><br><br>
-                
-                <label>Expectations / Suggestions:</label><br>
-                <textarea name="expectations" rows="3" required style="width:100%; padding:5px;"></textarea><br><br>
-                
-                <button type="submit" style="background-color: #28a745; color:white; padding:8px 12px; border:none; border-radius:5px;">Submit</button>
-                <button type="button" onclick="closeForm()" style="margin-left:10px; background-color:#dc3545; color:white; padding:8px 12px; border:none; border-radius:5px;">Close</button>
-            </form>
+                <label>📍 Community & District:</label>
+                <input type="text" name="community" required><br>
+
+                <label>🏗️ Infrastructure Challenges:</label>
+                <textarea name="challenges" rows="2" required></textarea><br>
+
+                <label>💡 Suggestions for Improvement:</label>
+                <textarea name="expectations" rows="2" required></textarea><br>
+
+                <label>📸 Upload a Photo (optional):</label>
+                <input type="file" name="photo" accept="image/*"><br>
+
+                <label>📌 Your Location (auto-filled):</label>
+                <input type="text" name="location" id="userLocation" readonly><br>
+
+                <label>🚨 Urgency Level:</label>
+                <input type="range" name="urgency" min="1" max="5" value="3" oninput="document.getElementById('urgencyValue').innerText = this.value">
+                <span id="urgencyValue">3</span> / 5<br><br>
+
+                <button type="submit" style="background-color: #28a745;">Submit</button>
+                <button type="button" onclick="closeForm()" style="background-color:#dc3545;">Close</button>
+             </form>
         </div>
 
         <!-- Feedback Form Scripts -->
@@ -120,6 +130,18 @@
             function closeForm() {
                 document.getElementById('formModal').style.display = 'none';
             }
+            // Get GPS Location
+            if ("geolocation" in navigator) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    document.getElementById('userLocation').value =
+                        position.coords.latitude.toFixed(5) + ", " + position.coords.longitude.toFixed(5);
+                }, function(error) {
+                     document.getElementById('userLocation').value = "Location not available";
+                });
+            } else {
+                document.getElementById('userLocation').value = "Geolocation not supported";
+            }
+
             document.getElementById("feedbackForm").addEventListener("submit", function(e) {
                 e.preventDefault();
                 const form = e.target;
