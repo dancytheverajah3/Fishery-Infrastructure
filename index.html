@@ -158,22 +158,22 @@
                 <!-- Community Fields -->
                 <div class="form-group">
                     <label>👤 Name:</label>
-                    <input type="text" name="name" required>
+                    <input type="text" name="name">
                 </div>
                 
                 <div class="form-group">
                     <label>📍 Community & District:</label>
-                    <input type="text" name="community" required>
+                    <input type="text" name="community">
                 </div>
 
                 <div class="form-group">
                     <label>🏗️ Infrastructure Challenges:</label>
-                    <textarea name="challenges" rows="2" required></textarea>
+                    <textarea name="challenges" rows="2"></textarea>
                 </div>
 
                 <div class="form-group">
                     <label>💡 Suggestions for Improvement:</label>
-                    <textarea name="expectations" rows="2" required></textarea>
+                    <textarea name="expectations" rows="2"></textarea>
                 </div>
                 
                 <div class="form-group">
@@ -258,8 +258,8 @@
                 const institution = form.elements["stakeholder_institution"].value.trim();
                 const stakeholderFeedback = form.elements["stakeholder_feedback"].value.trim();
 
-                const communityFilled = name || community || challenges || expectations;
-                const stakeholderFilled = stakeholderType || institution || stakeholderFeedback;
+                const communityFilled = !!(name || community || challenges || expectations);
+                const stakeholderFilled = !!(stakeholderType || institution || stakeholderFeedback);
                 // Validation Logic
                 if (!communityFilled && !stakeholderFilled) {
                     alert("⚠️ Please fill in either Community or Stakeholder section.");
